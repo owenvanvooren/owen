@@ -17,14 +17,6 @@
     font-display: swap;
 }
 
-@font-face {
-    font-family: 'Aileron';
-    src: url('../fonts/Aileron.otf') format('opentype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
-
 :root {
     --accent-color: #2273f3;
     --secondary-color: #6da5ff;
@@ -35,13 +27,13 @@
 
 html {
     scroll-behavior: smooth;
-    font-family: 'Fors', 'Aileron' 'Montserrat', 'Avenir', 'Helvetica Neue', 'Helvetica', 'Arial', system-ui, -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', sans-serif;
+    font-family: 'Fors', 'Montserrat', 'Avenir', 'Helvetica Neue', 'Helvetica', 'Arial', system-ui, -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', sans-serif;
 }
 
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Fors', 'Aileron' 'Montserrat', 'Avenir', 'Helvetica Neue', 'Helvetica', 'Arial', system-ui, -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', sans-serif;
+    font-family: 'Fors', 'Montserrat', 'Avenir', 'Helvetica Neue', 'Helvetica', 'Arial', system-ui, -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', sans-serif;
     background-color: var(--background-color);
     text-decoration: none;
 }
@@ -53,37 +45,37 @@ body::selection {
 
 #top-container {
     margin-left: 40px;
-    font-family: 'Fors', 'Aileron' 'Montserrat', 'Avenir', 'Helvetica Neue', 'Helvetica', 'Arial', system-ui, -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', sans-serif;
+    font-family: 'Fors', 'Montserrat', 'Avenir', 'Helvetica Neue', 'Helvetica', 'Arial', system-ui, -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', sans-serif;
 }
 
 #hi-intro {
-    font-family: 'Aileron', 'Fors', sans-serif;
+    font-family: 'Fors', sans-serif;
     color: var(--secondary-color);
     font-size: 28px;
-    margin-bottom: -44px;
+    margin-bottom: -48px;
     margin-left: 6px;
 }
 
 #name {
-    font-family: 'Maax Unicase Bold', 'Aileron', 'Fors', sans-serif;
+    font-family: 'Maax Unicase Bold', 'Fors', sans-serif;
     color: var(--accent-color);
     font-size: 75px;
 }
 
 #description {
-    font-family: 'Fors', 'Aileron', sans-serif;
+    font-family: 'Fors', sans-serif;
     color: var(--secondary-color);
     font-size: 50px;
     margin-top: -72px;
 }
 
 #mid-slash {
-    font-family: 'Fors', 'Aileron', sans-serif;
+    font-family: 'Fors', sans-serif;
     color: var(--tertiary-color);
 }
 
 #left-links {
-    font-family: 'Maax Unicase Bold', 'Aileron', 'Fors', sans-serif;
+    font-family: 'Maax Unicase Bold', 'Fors', sans-serif;
     color: var(--accent-color);
     right: 0;
     top: 400px;
@@ -118,7 +110,7 @@ body::selection {
     bottom: calc(100vh - 400px);
     font-size: 55px;
     text-align: right;
-    font-family: 'Maax Unicase Bold', 'Aileron', 'Fors', sans-serif;
+    font-family: 'Maax Unicase Bold', 'Fors', sans-serif;
 }
 
 #left-links > div {
@@ -173,7 +165,7 @@ body::selection {
     bottom: 100px;
     font-size: 55px;
     text-align: right;
-    font-family: 'Maax Unicase Bold', 'Aileron', 'Fors', sans-serif;
+    font-family: 'Maax Unicase Bold', 'Fors', sans-serif;
 }
 
 #right-links img {
