@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" draggable="false">
+
+<head>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Owen Van Vooren - Page Not Found</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+  <meta name="theme-color" content="#F25337">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body draggable="false">
+  <div id="header-container"></div>
+  <main>
+    <!-- Hey from the HTML! Sorry you couldn't find the page you were looking for :( -->
+    <img src="mascot.svg" alt="My logo : )" draggable="false" width="200" height=auto class="mainimg"
+      oncontextmenu="return false;">
+    <h1 class="main-h1">Oops!</h1>
+    <h2 style="font-size: 16px;">It seems you've lost your way.</h2>
+
+    <p class="aboutMe">The website you tried to visit doesn't exist anymore, has been moved, or, maybe never existed at all!</p>
+    <br>
+    <span>
+      <a href="https://owen.uno"><button><b>Back to home</b></button></a>
+    </span>
+    <br>
+    <div id="randomFact" class="random-fact"></div>
+  </main>
+    <footer>
+        <p>&copy; <a href="https://github.com/teenagetech" class="footer-link">Owen Van Vooren</a>. All rights reserved. Happy Holidays!
+        </p>
+    </footer>
+  <script src="header.js"></script>
+  <script type="module" src="firebaseconfig.js"></script>
+
+  <script>
+    const facts = [
+      "Fun fact: this site is powered by over 1,250 lines of code!",
+      "Fun fact: Owen.uno is a shorter domain than Apple.com, Google.com, and even GitHub.io!",
+      "Site hint: try hovering your cursor over the blue mascot. Can you pet him?",
+      'Question: is the mascot a duck or a chicken? What do you think? Email me your thoughts at <a href="mailto:hi@owen.uno" class="normal-link">hi@owen.uno</a>!'
+    ];
+
+
+    function displayRandomFact() {
+      const randomIndex = Math.floor(Math.random() * facts.length);
+      const factElement = document.getElementById('randomFact');
+      factElement.innerHTML = facts[randomIndex];
+    }
+
+    displayRandomFact();
+  </script>
+
+</body>
+
+</html>
