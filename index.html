@@ -16,8 +16,8 @@
     <link rel="preload" as="image" href="XploreImage.png">
     <link rel="preload" as="image" href="XploreScreenshot.png">
     <!-- Fonts preloading :) -->
-    <link rel="preload" as="font" href="/fonts/Fors Light Italic.ttf">
-    <link rel="preload" as="font" href="/fonts/MaaxUnicaseBold.otf">
+    <link rel="preload" as="font" href="/fonts/Fors Light Italic.ttf" crossorigin="anonymous">
+    <link rel="preload" as="font" href="/fonts/MaaxUnicaseBold.otf" crossorigin="anonymous">
 
     <meta name="theme-color" content="#2273f3">
     <meta property="og:title" content="owen van vooren">
@@ -41,20 +41,71 @@
 
     <div id="left-links">
         <div><a href="#" class="link right-link projects">projects</a></div>
-        <div><a href="portfolio" class="link right-link">
-          about me<img src="images/blast.svg" id="blast" alt="">
-        </a></div>
+        <a href="#" class="link right-link" id="about-link">
+            about me<img src="images/blast.svg" id="blast" alt="">
+        </a>
         <div><a href="mailto:hi@owen.uno" class="link right-link contact">contact</a></div>
-      </div>
-      <div id="right-links">
-        <a href="https://nocturne.owen.uno" class="link right-link" id="nocturne"><img src="/images/projects/nocturne.png"></a>
-        <a href="https://owen.uno/portfolio" class="link right-link projects"><img src="/images/icons/apple-logo.svg"></a>
-        <a href="https://owen.uno/xplore" class="link right-link projects"><img src="/images/projects/xplore.png"></a>
-        <a href="https://yay.owen.uno" class="link right-link projects"><img src="/images/projects/yay.png"></a>
-        <a href="https://teenagetech.github.io/wordclock" class="link right-link projects"><img src="/images/projects/wordclock.png"></a>
-        <a href="https://teenagetech.github.io/catchat" class="link right-link projects"><img src="/images/projects/catchat.png"></a>
-      </div>
+    </div>
+    <div id="right-links">
+        <a href="https://nocturne.owen.uno" class="link right-link" id="nocturne"><img
+                src="/images/projects/nocturne.png"></a>
+        <a href="https://owen.uno/portfolio" class="link right-link"><img
+                src="/images/icons/apple-logo.svg"></a>
+        <a href="https://owen.uno/xplore" class="link right-link"><img src="/images/projects/xplore.png"></a>
+        <a href="https://yay.owen.uno" class="link right-link"><img src="/images/projects/yay.png"></a>
+        <a href="https://teenagetech.github.io/wordclock" class="link right-link"><img
+                src="/images/projects/wordclock.png"></a>
+        <a href="https://teenagetech.github.io/catchat" class="link right-link"><img
+                src="/images/projects/catchat.png"></a>
+    </div>
+    <div id="about-popup" class="popup hidden">
+        <div class="popup-content">
+            <span id="popup-close">&times;</span>
+            <h2>about me</h2>
+            <p>
+                I'm Owen Van Vooren, a UI designer and developer. I make fun apps and games (big and small) for the internet and beyond.
+            </p>
+        </div>
+    </div>
+    <script>
+        const aboutLink = document.getElementById('about-link');
+        const popup = document.getElementById('about-popup');
+        const closeBtn = document.getElementById('popup-close');
 
+        aboutLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            popup.classList.remove('hidden');
+            const content = popup.querySelector('.popup-content');
+            content.classList.add('animate');
+
+            // Remove animation class after it plays to allow re-trigger
+            setTimeout(() => content.classList.remove('animate'), 300);
+        });
+
+
+        closeBtn.addEventListener('click', () => {
+            const content = popup.querySelector('.popup-content');
+            content.classList.add('fade-out');
+
+            setTimeout(() => {
+                popup.classList.add('hidden');
+                content.classList.remove('fade-out');
+            }, 300); // matches animation duration
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === popup) {
+                const content = popup.querySelector('.popup-content');
+                content.classList.add('fade-out');
+
+                setTimeout(() => {
+                    popup.classList.add('hidden');
+                    content.classList.remove('fade-out');
+                }, 300);
+            }
+        });
+
+    </script>
 </body>
 
 </html>
