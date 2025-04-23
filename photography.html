@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" draggable="false">
+
+<head>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <meta charset="UTF-8">
+  <meta name="description" content="Owen Van Vooren: Photography">
+  <meta name="keywords"
+    content="Owen Van Vooren, Photographer, Developer, Entrepreneur, Cinematographer, Videographer, iOS app developer, Mac developer">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Owen/Photography</title>
+  <link rel="preload" as="image" href="tinycon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+  <meta property="og:title" content="Owen/Photography">
+  <meta property="og:description"
+    content="Hi! Iʼm Owen. Iʼm a photographer, programmer, iOS/macOS developer, and innovator.">
+  <meta property="og:image" content="/apple-touch-icon.png">
+  <meta property="og:url" content="https://owen.uno/photography">
+  <meta name="theme-color" content="#F25337">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body draggable="false">
+  <div id="header-container"></div>
+  <main>
+    <!--Hey from the HTML! I hope that you enjoyed using my website as much as I enjoyed programming it!-->
+    <img src="mascot.svg" alt="My logo : )" draggable="false" width="200" height=auto class="mainimg"
+      oncontextmenu="return false;">
+    <h1 class="main-h1">I take pictures.</h1>
+    <p class="aboutMe">Iʼm an amateur photographer/cinematographer, as well as an aspiring video editor. Iʼve got a
+      YouTube
+      channel that I run with my best friend. Itʼs called <a href="https://www.youtube.com/@PulsarFreestyle"
+        class="normal-link">Pulsar Freestyle</a>, where
+      we post freestyle FPV videos.<br>No, theyʼre not oversaturated.<br>It's how the world looks to me.</p>
+    <br>
+    <h2>Some of my photos:</h2>
+    <br>
+    <div class="gallery-container">
+      <div class="gallery-item" onclick="toggleOverlay(this)">
+        <img src="images/photography/mountain.png" alt="Mountain" class="gallery-image" oncontextmenu="return false;" draggable="false">
+        <div class="image-overlay">Avalanche Mountain, Glacier National Park</div>
+      </div>
+      <div class="gallery-item" onclick="toggleOverlay(this)">
+        <img src="images/photography/cardinal.png" alt="Cardinal" class="gallery-image" oncontextmenu="return false;" draggable="false">
+        <div class="image-overlay">Cardinal in a birch tree</div>
+      </div>
+      <div class="gallery-item" onclick="toggleOverlay(this)">
+        <img src="images/photography/glacier.png" alt="Glacier" class="gallery-image" oncontextmenu="return false;" draggable="false">
+        <div class="image-overlay">Jackson Glacier, Glacier National Park</div>
+      </div>
+      <div class="gallery-item" onclick="toggleOverlay(this)">
+        <img src="images/photography/lake.png" alt="Lake" class="gallery-image" oncontextmenu="return false;" draggable="false">
+        <div class="image-overlay">Windy Lake, Glacier National Park</div>
+      </div>
+      <div class="gallery-item" onclick="toggleOverlay(this)">
+        <img src="images/photography/lighthouse.png" alt="Lighthouse" class="gallery-image" oncontextmenu="return false;"
+          draggable="false">
+        <div class="image-overlay">Lighthouse, Maine.<br>Also the easternmost point in the contiguous U.S.</div>
+      </div>
+      <div class="gallery-item" onclick="toggleOverlay(this)">
+        <img src="images/photography/cabin.png" alt="Cabin" class="gallery-image" oncontextmenu="return false;" draggable="false">
+        <div class="image-overlay">Cabin at dusk. In Montana.</div>
+      </div>
+      <div class="gallery-item" onclick="toggleOverlay(this)">
+        <img src="images/photography/elec_ave.png" alt="Electric Ave" class="gallery-image" oncontextmenu="return false;"
+          draggable="false">
+        <div class="image-overlay">Electric Ave.<br>No, I didn't know about the song before I took this.</div>
+      </div>
+      <div class="gallery-item" onclick="toggleOverlay(this)">
+        <img src="images/photography/vermont.png" alt="Vermont" class="gallery-image" oncontextmenu="return false;" draggable="false">
+        <div class="image-overlay">Somewhere in Vermont, Killington, I think.<br>No murder that I was aware of.</div>
+      </div>
+      <div class="gallery-item" onclick="toggleOverlay(this)">
+        <img src="images/photography/shrubed.png" alt="Near Bar Harbor" class="gallery-image" oncontextmenu="return false;"
+          draggable="false">
+        <div class="image-overlay">Somewhere near Bar Harbor in Maine.</div>
+      </div>
+      <div class="gallery-item" onclick="toggleOverlay(this)">
+        <img src="images/photography/undawatah.png" alt="Underwater" class="gallery-image" oncontextmenu="return false;"
+          draggable="false">
+        <div class="image-overlay">Rocks, underwater, somewhere in Minnesota.</div>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <p>&copy; <a href="https://github.com/teenagetech" class="footer-link">Owen Van Vooren</a>. All rights reserved.
+    </p>
+  </footer>
+  <script src="header.js"></script>
+  <script type="module" src="firebaseconfig.js"></script>
+  <script>
+    let activeOverlay = null;
+    let dimmedImage = null;
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      item.addEventListener('click', (event) => {
+        event.stopPropagation();
+
+        const overlay = item.querySelector('.image-overlay');
+        const image = item.querySelector('.gallery-image');
+        if (activeOverlay && activeOverlay !== overlay) {
+          activeOverlay.classList.remove('show');
+          dimmedImage.classList.remove('dim');
+        }
+
+        overlay.classList.toggle('show');
+        image.classList.toggle('dim');
+        if (overlay.classList.contains('show')) {
+          activeOverlay = overlay;
+          dimmedImage = image;
+        } else {
+          activeOverlay = null;
+          dimmedImage = null;
+        }
+      });
+    });
+    document.addEventListener('click', () => {
+      if (activeOverlay) {
+        activeOverlay.classList.remove('show');
+        dimmedImage.classList.remove('dim');
+        activeOverlay = null;
+        dimmedImage = null;
+      }
+    });
+  </script>
+
+</body>
+
+</html>
