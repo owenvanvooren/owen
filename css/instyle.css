@@ -419,60 +419,60 @@ body::selection {
         display: flex;
         flex-direction: column;
     }
-    
+
     main {
         display: flex;
         flex-direction: column;
         flex: 1;
     }
-    
+
     #top-container {
         margin-left: 20px;
         margin-top: 30px;
         margin-bottom: 30px;
     }
-    
+
     #hi-intro {
         font-size: 22px;
         margin-bottom: -30px;
     }
-    
+
     #name {
         font-size: 42px;
     }
-    
+
     #description {
         font-size: 28px;
         margin-top: -35px;
     }
-    
+
     #arrow {
         display: none;
     }
-    
+
     #link-container {
         width: 100%;
         order: 1;
     }
-    
+
     #left-links {
         position: static !important;
         right: auto !important;
         bottom: auto !important;
         font-size: 42px;
         text-align: center;
-        width: 110%; 
+        width: 110%;
         margin: 15px -5% 25px;
     }
-    
+
     #left-links>div {
         margin-bottom: 15px;
     }
-    
+
     .right-link {
         justify-content: center;
     }
-    
+
     #right-links {
         position: static;
         left: auto;
@@ -487,11 +487,11 @@ body::selection {
         max-width: 380px;
         text-align: center;
     }
-    
+
     #right-links img {
         width: 60px;
     }
-    
+
     #nocturne img {
         width: 63px;
     }
@@ -692,30 +692,31 @@ main {
         padding-bottom: 120px;
         min-height: 90vh;
     }
-    
+
     body {
         min-height: 90vh;
     }
-    
-    #top-container, #link-container {
+
+    #top-container,
+    #link-container {
         position: relative;
-        z-index: 5; 
+        z-index: 5;
     }
-    
+
     #right-links {
         position: absolute;
         left: 40px;
         bottom: 40px;
         text-align: left;
-        z-index: 1; 
+        z-index: 1;
     }
-    
+
     #right-links img {
         width: 80px;
         height: auto;
         transition: ease-in-out 0.1s;
     }
-    
+
     #nocturne img {
         width: 84px;
         height: auto;
@@ -727,11 +728,11 @@ main {
     body {
         min-height: 650px;
     }
-    
+
     main {
         min-height: 650px;
     }
-    
+
     #right-links {
         position: absolute;
         bottom: 30px;
@@ -744,11 +745,11 @@ main {
     body {
         min-height: 600px;
     }
-    
+
     main {
         min-height: 600px;
     }
-    
+
     #right-links {
         bottom: 20px;
     }
@@ -759,11 +760,11 @@ main {
     body {
         min-height: 650px;
     }
-    
+
     main {
         min-height: 650px;
     }
-    
+
     #right-links {
         margin-top: auto;
         margin-bottom: 15px;
