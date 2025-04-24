@@ -770,3 +770,65 @@ main {
         margin-bottom: 15px;
     }
 }
+
+/* Tooltip styles */
+#right-links .tooltip {
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    border: 2px solid var(--accent-color);
+    border-radius: 12px;
+    padding: 15px;
+    width: 200px;
+    box-shadow: 0 5px 15px rgba(34, 115, 243, 0.15);
+    transition: opacity 0.3s, transform 0.3s;
+    transform: translateY(10px);
+    pointer-events: none;
+    z-index: 100;
+    left: calc(100% + 15px);
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: left;
+}
+
+#right-links .tooltip h3 {
+    font-family: 'Maax Unicase', 'Fors', sans-serif;
+    color: var(--accent-color);
+    margin: 0 0 8px 0;
+    font-size: 18px;
+}
+
+#right-links .tooltip p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+#right-links a {
+    position: relative;
+}
+
+/* Only show tooltips on desktop/devices with hover capability */
+@media (hover: hover) {
+    #right-links a:hover .tooltip {
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(-50%);
+    }
+}
+
+/* Mobile & small screens - don't show tooltips */
+@media screen and (max-width: 768px) {
+    #right-links .tooltip {
+        display: none;
+    }
+}
+
+/* Special positioning adjustments for grid layout in mobile view */
+@media screen and (max-width: 600px) {
+    #right-links a {
+        position: static;
+    }
+}
