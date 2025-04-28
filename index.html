@@ -51,7 +51,7 @@
                 <a href="#" class="link right-link" id="about-link">
                     about me<img src="images/blast.svg" id="blast" alt="" draggable="false">
                 </a>
-                <div><a href="mailto:hi@owen.uno" class="link right-link contact">contact</a></div>
+                <div><a href="#" class="link right-link contact" id="contact-link">contact</a></div>
             </div>
         </div>
 
@@ -112,43 +112,218 @@
             </p>
         </div>
     </div>
+
+    <div id="contact-popup" class="popup hidden">
+        <div class="popup-content">
+            <span id="contact-popup-close">&times;</span>
+            <h2>contact</h2>
+            <div class="contact-section">
+                <p class="contact-text">Send me an email at <a href="mailto:hi@owen.uno" class="email-link">hi@owen.uno</a></p>
+                
+                <div class="contact-divider">
+                    <span class="divider-line"></span>
+                    <span class="divider-text">or</span>
+                    <span class="divider-line"></span>
+                </div>
+                
+                <div class="signup-form">
+                    <p class="contact-text">Sign up for updates:</p>
+                    <form id="email-signup">
+                        <div class="form-group">
+                            <input type="email" id="email-input" placeholder="Your email address" required>
+                            <button type="submit" id="signup-button">Subscribe</button>
+                        </div>
+                        <div id="signup-message"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         const aboutLink = document.getElementById('about-link');
-        const popup = document.getElementById('about-popup');
+        const aboutPopup = document.getElementById('about-popup');
         const closeBtn = document.getElementById('popup-close');
+        
+        const contactLink = document.getElementById('contact-link');
+        const contactPopup = document.getElementById('contact-popup');
+        const contactCloseBtn = document.getElementById('contact-popup-close');
+        const emailForm = document.getElementById('email-signup');
+        const signupMessage = document.getElementById('signup-message');
 
+        // About popup functionality
         aboutLink.addEventListener('click', (e) => {
             e.preventDefault();
-            popup.classList.remove('hidden');
-            const content = popup.querySelector('.popup-content');
+            aboutPopup.classList.remove('hidden');
+            const content = aboutPopup.querySelector('.popup-content');
             content.classList.add('animate');
 
             setTimeout(() => content.classList.remove('animate'), 300);
         });
 
-
         closeBtn.addEventListener('click', () => {
-            const content = popup.querySelector('.popup-content');
+            const content = aboutPopup.querySelector('.popup-content');
             content.classList.add('fade-out');
 
             setTimeout(() => {
-                popup.classList.add('hidden');
+                aboutPopup.classList.add('hidden');
                 content.classList.remove('fade-out');
             }, 300); // matches animation duration
         });
 
+        // Contact popup functionality
+        contactLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            contactPopup.classList.remove('hidden');
+            const content = contactPopup.querySelector('.popup-content');
+            content.classList.add('animate');
+
+            setTimeout(() => content.classList.remove('animate'), 300);
+        });
+
+        contactCloseBtn.addEventListener('click', () => {
+            const content = contactPopup.querySelector('.popup-content');
+            content.classList.add('fade-out');
+
+            setTimeout(() => {
+                contactPopup.classList.add('hidden');
+                content.classList.remove('fade-out');
+            }, 300);
+        });
+
+        // Email signup form handling
+        emailForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email-input').value;
+            
+            // Reset previous messages
+            signupMessage.textContent = '';
+            signupMessage.className = '';
+            
+            // Validate email format
+            if (!validateEmail(email)) {
+                const errorMessage = getEmailErrorMessage(email);
+                signupMessage.textContent = errorMessage;
+                signupMessage.classList.add('error');
+                return;
+            }
+            
+            // Show a success message (in a real application, you would send this to your server)
+            signupMessage.textContent = 'Thanks for subscribing!';
+            signupMessage.classList.add('success');
+            
+            // Clear the form
+            document.getElementById('email-input').value = '';
+            
+            // Clear the message after a delay
+            setTimeout(() => {
+                signupMessage.textContent = '';
+                signupMessage.classList.remove('success');
+            }, 3000);
+        });
+
+        // Real-time validation on input
+        document.getElementById('email-input').addEventListener('input', function() {
+            const email = this.value;
+            const emailInput = document.getElementById('email-input');
+            
+            // Reset previous messages if field is empty
+            if (!email) {
+                signupMessage.textContent = '';
+                signupMessage.className = '';
+                emailInput.classList.remove('input-error');
+                return;
+            }
+            
+            // Validate email format as user types
+            if (!validateEmail(email)) {
+                const errorMessage = getEmailErrorMessage(email);
+                signupMessage.textContent = errorMessage;
+                signupMessage.classList.add('error');
+                emailInput.classList.add('input-error');
+            } else {
+                signupMessage.textContent = '';
+                signupMessage.className = '';
+                emailInput.classList.remove('input-error');
+            }
+        });
+
+        // Email validation functions
+        function validateEmail(email) {
+            // More strict regex that requires a TLD in the domain part
+            const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+            
+            // If regex passes, do additional checks
+            if (regex.test(email)) {
+                const domain = email.substring(email.indexOf('@') + 1);
+                
+                // Domain must have at least one dot
+                if (!domain.includes('.')) {
+                    return false;
+                }
+                
+                // TLD must be at least 2 characters
+                const tld = domain.substring(domain.lastIndexOf('.') + 1);
+                if (tld.length < 2) {
+                    return false;
+                }
+                
+                return true;
+            }
+            
+            return false;
+        }
+        
+        function getEmailErrorMessage(email) {
+            if (!email.includes('@')) {
+                return 'Please include an @ in the email address';
+            } else if (email.indexOf('@') === 0) {
+                return 'Please enter a username before the @';
+            } else if (email.indexOf('@') === email.length - 1) {
+                return 'Please include a domain after the @';
+            } 
+            
+            // Once we have an @ with content before and after, check domain part
+            const domain = email.substring(email.indexOf('@') + 1);
+            
+            if (!domain.includes('.')) {
+                return 'Please include a domain extension (e.g. .com)';
+            } else if (domain.lastIndexOf('.') === 0) {
+                return 'Please include a domain name before the extension';
+            } else if (domain.lastIndexOf('.') === domain.length - 1) {
+                return 'Please include a domain extension after the dot';
+            }
+            
+            const tld = domain.substring(domain.lastIndexOf('.') + 1);
+            if (tld.length < 2) {
+                return 'Domain extension must be at least 2 characters';
+            }
+            
+            return 'Please enter a valid email address';
+        }
+
+        // Close popups when clicking outside
         window.addEventListener('click', (e) => {
-            if (e.target === popup) {
-                const content = popup.querySelector('.popup-content');
+            if (e.target === aboutPopup) {
+                const content = aboutPopup.querySelector('.popup-content');
                 content.classList.add('fade-out');
 
                 setTimeout(() => {
-                    popup.classList.add('hidden');
+                    aboutPopup.classList.add('hidden');
+                    content.classList.remove('fade-out');
+                }, 300);
+            }
+            
+            if (e.target === contactPopup) {
+                const content = contactPopup.querySelector('.popup-content');
+                content.classList.add('fade-out');
+
+                setTimeout(() => {
+                    contactPopup.classList.add('hidden');
                     content.classList.remove('fade-out');
                 }, 300);
             }
         });
-
     </script>
     <script type="module" src="firebaseconfig.js"></script>
 </body>
