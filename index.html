@@ -33,6 +33,14 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <meta name="apple-mobile-web-app-title" content="owen.uno">
     <link rel="manifest" href="/site.webmanifest">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init({
+              publicKey: "PxfqxlG7r1ZziwElH"
+            });
+        })();
+    </script>
 </head>
 
 <body>
@@ -130,8 +138,13 @@
                     <p class="contact-text">Sign up for updates:</p>
                     <form id="email-signup">
                         <div class="form-group">
-                            <input type="email" id="email-input" placeholder="Your email address" required>
-                            <button type="submit" id="signup-button">Subscribe</button>
+                            <input type="email" id="email-input" name="user_email" placeholder="Your email address" required>
+                            <input type="hidden" name="to_email" value="hi@owen.uno">
+                            <input type="hidden" name="message" value="New subscription request">
+                            <button type="submit" id="signup-button">
+                                <span id="button-text">Subscribe</span>
+                                <span id="button-spinner" class="spinner hidden"></span>
+                            </button>
                         </div>
                         <div id="signup-message"></div>
                     </form>
@@ -150,8 +163,9 @@
         const contactCloseBtn = document.getElementById('contact-popup-close');
         const emailForm = document.getElementById('email-signup');
         const signupMessage = document.getElementById('signup-message');
+        const buttonText = document.getElementById('button-text');
+        const buttonSpinner = document.getElementById('button-spinner');
 
-        // About popup functionality
         aboutLink.addEventListener('click', (e) => {
             e.preventDefault();
             aboutPopup.classList.remove('hidden');
@@ -168,10 +182,9 @@
             setTimeout(() => {
                 aboutPopup.classList.add('hidden');
                 content.classList.remove('fade-out');
-            }, 300); // matches animation duration
+            }, 300);
         });
 
-        // Contact popup functionality
         contactLink.addEventListener('click', (e) => {
             e.preventDefault();
             contactPopup.classList.remove('hidden');
@@ -191,16 +204,13 @@
             }, 300);
         });
 
-        // Email signup form handling
         emailForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const email = document.getElementById('email-input').value;
             
-            // Reset previous messages
             signupMessage.textContent = '';
             signupMessage.className = '';
             
-            // Validate email format
             if (!validateEmail(email)) {
                 const errorMessage = getEmailErrorMessage(email);
                 signupMessage.textContent = errorMessage;
@@ -208,34 +218,60 @@
                 return;
             }
             
-            // Show a success message (in a real application, you would send this to your server)
-            signupMessage.textContent = 'Thanks for subscribing!';
-            signupMessage.classList.add('success');
+            const lastSubmitTime = localStorage.getItem('lastSubmitTime');
+            const now = Date.now();
+            if (lastSubmitTime && now - lastSubmitTime < 60000) { // 1 minute cooldown
+                signupMessage.textContent = 'Please wait before submitting again';
+                signupMessage.classList.add('error');
+                return;
+            }
+            localStorage.setItem('lastSubmitTime', now);
             
-            // Clear the form
-            document.getElementById('email-input').value = '';
+            const submitButton = document.getElementById('signup-button');
+            submitButton.disabled = true;
+            buttonText.classList.add('hidden');
+            buttonSpinner.classList.remove('hidden');
             
-            // Clear the message after a delay
-            setTimeout(() => {
-                signupMessage.textContent = '';
-                signupMessage.classList.remove('success');
-            }, 3000);
+            emailjs.sendForm('service_81a40w4', 'template_cntgssn', emailForm)
+                .then(function(response) {
+                    return emailjs.send('service_81a40w4', 'template_2tvssaq', {
+                        user_email: document.getElementById('email-input').value
+                    });
+                })
+                .then(function() {
+                    signupMessage.textContent = 'Thanks for subscribing!';
+                    signupMessage.classList.add('success');
+                    
+                    document.getElementById('email-input').value = '';
+                })
+                .catch(function(error) {
+                    signupMessage.textContent = 'Something went wrong. Please try again later.';
+                    signupMessage.classList.add('error');
+                    console.error('EmailJS error:', error);
+                })
+                .finally(function() {
+                    submitButton.disabled = false;
+                    buttonText.classList.remove('hidden');
+                    buttonSpinner.classList.add('hidden');
+                    if (signupMessage.classList.contains('success')) {
+                        setTimeout(() => {
+                            signupMessage.textContent = '';
+                            signupMessage.classList.remove('success');
+                        }, 3000);
+                    }
+                });
         });
 
-        // Real-time validation on input
         document.getElementById('email-input').addEventListener('input', function() {
             const email = this.value;
             const emailInput = document.getElementById('email-input');
-            
-            // Reset previous messages if field is empty
             if (!email) {
                 signupMessage.textContent = '';
                 signupMessage.className = '';
                 emailInput.classList.remove('input-error');
                 return;
             }
-            
-            // Validate email format as user types
+
             if (!validateEmail(email)) {
                 const errorMessage = getEmailErrorMessage(email);
                 signupMessage.textContent = errorMessage;
@@ -248,21 +284,16 @@
             }
         });
 
-        // Email validation functions
         function validateEmail(email) {
-            // More strict regex that requires a TLD in the domain part
             const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
             
-            // If regex passes, do additional checks
             if (regex.test(email)) {
                 const domain = email.substring(email.indexOf('@') + 1);
                 
-                // Domain must have at least one dot
                 if (!domain.includes('.')) {
                     return false;
                 }
                 
-                // TLD must be at least 2 characters
                 const tld = domain.substring(domain.lastIndexOf('.') + 1);
                 if (tld.length < 2) {
                     return false;
@@ -283,7 +314,6 @@
                 return 'Please include a domain after the @';
             } 
             
-            // Once we have an @ with content before and after, check domain part
             const domain = email.substring(email.indexOf('@') + 1);
             
             if (!domain.includes('.')) {
@@ -302,7 +332,6 @@
             return 'Please enter a valid email address';
         }
 
-        // Close popups when clicking outside
         window.addEventListener('click', (e) => {
             if (e.target === aboutPopup) {
                 const content = aboutPopup.querySelector('.popup-content');

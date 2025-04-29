@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Image preloading :) -->
+    <link rel="preload" as="image" href="mascot.svg">
+    <link rel="preload" as="image" href="white.svg">
+    <link rel="preload" as="image" href="tinycon.png">
+    <link rel="preload" as="image" href="XploreImage.png">
+    <link rel="preload" as="image" href="XploreScreenshot.png">
+    <!-- Font preloading :) -->
+    <link rel="preload" as="font" href="/fonts/Fors Light Italic.ttf" crossorigin="anonymous">
+    <link rel="preload" as="font" href="/fonts/MaaxUnicaseBold.otf" crossorigin="anonymous">
+
+    <meta name="description"
+        content="Owen Van Vooren: Developer, Photographer, Entrepreneur, and Tech Enthusiast extrodinaire.">
+    <meta name="keywords"
+        content="Owen Van Vooren, Developer, Photographer, Entrepreneur, Cinematographer, Videographer, iOS app developer, Mac developer">
+    <meta name="theme-color" content="#2273f3">
+    <meta property="og:title" content="owen van vooren">
+    <meta property="og:type" content="website">
+    <meta property="og:description"
+        content="Hi! Iʼm Owen. Iʼm a photographer, programmer, iOS/macOS developer, and innovator.">
+    <meta property="og:image" content="capture.png">
+    <meta property="og:url" content="https://owen.uno">
+    <title>email archive | owen van vooren</title>
+    <link rel="stylesheet" href="/css/instyle.css">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <meta name="apple-mobile-web-app-title" content="owen.uno">
+    <link rel="manifest" href="/site.webmanifest">
+    <style>
+        .archive-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .archive-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .archive-item {
+            background-color: var(--background-color);
+            border: 2px solid var(--accent-color);
+            border-radius: 16px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+        }
+        
+        .archive-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(34, 115, 243, 0.1);
+            border-color: var(--secondary-color);
+        }
+        
+        .archive-item-date {
+            font-family: 'Maax Unicase', 'Fors', sans-serif;
+            font-size: 24px;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+        
+        .archive-item:hover .archive-item-date {
+            color: var(--secondary-color);
+        }
+        
+        .archive-item-desc {
+            color: var(--text-color);
+            font-size: 16px;
+            margin-bottom: 15px;
+            text-decoration: var(--accent-color) solid underline;
+        }
+        
+        .archive-item-link {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-family: 'Maax Unicase', 'Fors', sans-serif;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .archive-item-link:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .archive-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .archive-title {
+            font-family: 'Maax Unicase', 'Fors', sans-serif;
+            color: var(--accent-color);
+            font-size: 55px;
+            margin-bottom: 10px;
+        }
+        
+        .archive-subtitle {
+            font-family: 'Fors', sans-serif;
+            color: var(--secondary-color);
+            font-size: 26px;
+        }
+        
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--accent-color);
+            font-family: 'Maax Unicase', 'Fors', sans-serif;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s ease;
+            margin-bottom: 30px;
+        }
+        
+        .back-link:hover {
+            color: var(--secondary-color);
+        }
+        
+        .back-icon {
+            margin-right: 8px;
+            margin-bottom: 4px;
+            width: 20px;
+            height: 20px;
+        }
+        
+        @media screen and (max-width: 600px) {
+            .archive-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .archive-title {
+                font-size: 36px;
+            }
+            
+            .archive-subtitle {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <div class="archive-container">
+            <a href="/" class="back-link">
+                <svg class="back-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+                </svg>
+                back to home
+            </a>
+            
+            <div class="archive-header">
+                <h1 class="archive-title">email archive</h1>
+                <p class="archive-subtitle">a collection of my update emails</p>
+            </div>
+            
+            <div class="archive-grid">
+                <a href="April2025.pdf" class="archive-item">
+                    <h2 class="archive-item-date">April 2025</h2>
+                    <p class="archive-item-desc">spring updates & ui redesign news</p>
+                    <span class="archive-item-link">view pdf</span>
+                </a>
+                
+                <a href="November2024.pdf" class="archive-item">
+                    <h2 class="archive-item-date">November 2024</h2>
+                    <p class="archive-item-desc">fall recap & big news</p>
+                    <span class="archive-item-link">view pdf</span>
+                </a>
+                
+                <!-- You can add more archive items here as needed -->
+            </div>
+        </div>
+        
+        <img src="/images/squiggle.svg" id="squiggle" alt="" draggable="false" oncontextmenu="return false">
+    </main>
+
+    <script type="module" src="firebaseconfig.js"></script>
+</body>
+
+</html>

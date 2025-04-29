@@ -83,6 +83,15 @@
     }
 }
 
+@keyframes spinnerRotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 :root {
     --accent-color: #2273f3;
     --secondary-color: #6da5ff;
@@ -421,10 +430,36 @@ body::selection {
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    position: relative;
+    min-width: 100px;
 }
 
 #signup-button:hover {
     background-color: var(--secondary-color);
+}
+
+#signup-button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.spinner {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spinnerRotate 0.8s ease infinite;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -9px;
+    margin-left: -9px;
+}
+
+.hidden {
+    display: none;
 }
 
 #signup-message {
