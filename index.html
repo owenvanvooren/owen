@@ -232,34 +232,41 @@
             buttonText.classList.add('hidden');
             buttonSpinner.classList.remove('hidden');
             
-            emailjs.sendForm('service_81a40w4', 'template_cntgssn', emailForm)
-                .then(function(response) {
-                    return emailjs.send('service_81a40w4', 'template_2tvssaq', {
-                        user_email: document.getElementById('email-input').value
-                    });
-                })
-                .then(function() {
-                    signupMessage.textContent = 'Thanks for subscribing!';
-                    signupMessage.classList.add('success');
-                    
-                    document.getElementById('email-input').value = '';
-                })
-                .catch(function(error) {
-                    signupMessage.textContent = 'Something went wrong. Please try again later.';
-                    signupMessage.classList.add('error');
-                    console.error('EmailJS error:', error);
-                })
-                .finally(function() {
-                    submitButton.disabled = false;
-                    buttonText.classList.remove('hidden');
-                    buttonSpinner.classList.add('hidden');
-                    if (signupMessage.classList.contains('success')) {
-                        setTimeout(() => {
-                            signupMessage.textContent = '';
-                            signupMessage.classList.remove('success');
-                        }, 3000);
-                    }
+            // Send notification email to owen@owen.uno
+            emailjs.send('service_81a40w4', 'template_2tvssaq', {
+                user_email: email,
+                to_email: 'owen@owen.uno',
+                message: 'New subscription request'
+            })
+            .then(function() {
+                // Send thank you email to the subscriber
+                return emailjs.send('service_81a40w4', 'template_cntgssn', {
+                    user_email: email,
+                    to_email: email
                 });
+            })
+            .then(function() {
+                signupMessage.textContent = 'Thanks for subscribing!';
+                signupMessage.classList.add('success');
+                
+                document.getElementById('email-input').value = '';
+            })
+            .catch(function(error) {
+                signupMessage.textContent = 'Something went wrong. Please try again later.';
+                signupMessage.classList.add('error');
+                console.error('EmailJS error:', error);
+            })
+            .finally(function() {
+                submitButton.disabled = false;
+                buttonText.classList.remove('hidden');
+                buttonSpinner.classList.add('hidden');
+                if (signupMessage.classList.contains('success')) {
+                    setTimeout(() => {
+                        signupMessage.textContent = '';
+                        signupMessage.classList.remove('success');
+                    }, 3000);
+                }
+            });
         });
 
         document.getElementById('email-input').addEventListener('input', function() {
