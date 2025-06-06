@@ -440,6 +440,27 @@
     <script>
         const targetDate = new Date(Date.UTC(2025, 5, 24, 5, 0, 0));
 
+        // Helper: get style from URL
+        function getStyleFromURL() {
+            const params = new URLSearchParams(window.location.search);
+            let style = params.get('style');
+            if (!style && window.location.hash) {
+                style = window.location.hash.replace(/^#/, '');
+            }
+            // Normalize and validate
+            const valid = ['neumorphic', 'glassmorphic', 'skeuomorphic', 'flat'];
+            if (style && valid.includes(style.toLowerCase())) {
+                return style.toLowerCase();
+            }
+            return null;
+        }
+
+        // On page load, set style from URL if present
+        const urlStyle = getStyleFromURL();
+        if (urlStyle) {
+            setStyle(urlStyle);
+        }
+
         function updateTimer() {
             const now = new Date().getTime();
             const distance = targetDate - now;
