@@ -35,9 +35,9 @@
     <link rel="manifest" href="/site.webmanifest">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script type="text/javascript">
-        (function() {
+        (function () {
             emailjs.init({
-              publicKey: "PxfqxlG7r1ZziwElH"
+                publicKey: "PxfqxlG7r1ZziwElH"
             });
         })();
     </script>
@@ -78,11 +78,11 @@
                     <p>My retro portfolio</p>
                 </div>
             </a>
-            <a href="https://owen.uno/xplore" class="link right-link">
-                <img src="/images/projects/xplore.png" draggable="false">
+            <a href="https://ohno.owen.uno" class="link right-link">
+                <img src="/images/projects/ohno.png" draggable="false">
                 <div class="tooltip">
-                    <h3>Xplore</h3>
-                    <p>A web browser for macOS</p>
+                    <h3>ohno</h3>
+                    <p>a microblog, by yours truly</p>
                 </div>
             </a>
             <a href="https://yay.owen.uno" class="link right-link">
@@ -92,14 +92,14 @@
                     <p>Zero-risk meaningless crypto</p>
                 </div>
             </a>
-            <a href="https://teenagetech.github.io/wordclock" class="link right-link">
+            <a href="https://owen.uno/archive/wordclock" class="link right-link">
                 <img src="/images/projects/wordclock.png" draggable="false">
                 <div class="tooltip">
                     <h3>word clock</h3>
                     <p>Tell the time with a click</p>
                 </div>
             </a>
-            <a href="https://teenagetech.github.io/catchat" class="link right-link">
+            <a href="https://owen.uno/archive/catchat" class="link right-link">
                 <img src="/images/projects/catchat.png" draggable="false">
                 <div class="tooltip">
                     <h3>CatChat</h3>
@@ -126,19 +126,21 @@
             <span id="contact-popup-close">&times;</span>
             <h2>contact</h2>
             <div class="contact-section">
-                <p class="contact-text">Send me an email at <a href="mailto:hi@owen.uno" class="email-link">hi@owen.uno</a></p>
-                
+                <p class="contact-text">Send me an email at <a href="mailto:hi@owen.uno"
+                        class="email-link">hi@owen.uno</a></p>
+
                 <div class="contact-divider">
                     <span class="divider-line"></span>
                     <span class="divider-text">or</span>
                     <span class="divider-line"></span>
                 </div>
-                
+
                 <div class="signup-form">
                     <p class="contact-text">Sign up for updates:</p>
                     <form id="email-signup">
                         <div class="form-group">
-                            <input type="email" id="email-input" name="user_email" placeholder="Your email address" required>
+                            <input type="email" id="email-input" name="user_email" placeholder="Your email address"
+                                required>
                             <input type="hidden" name="to_email" value="hi@owen.uno">
                             <input type="hidden" name="message" value="New subscription request">
                             <button type="submit" id="signup-button">
@@ -157,7 +159,7 @@
         const aboutLink = document.getElementById('about-link');
         const aboutPopup = document.getElementById('about-popup');
         const closeBtn = document.getElementById('popup-close');
-        
+
         const contactLink = document.getElementById('contact-link');
         const contactPopup = document.getElementById('contact-popup');
         const contactCloseBtn = document.getElementById('contact-popup-close');
@@ -207,17 +209,17 @@
         emailForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const email = document.getElementById('email-input').value;
-            
+
             signupMessage.textContent = '';
             signupMessage.className = '';
-            
+
             if (!validateEmail(email)) {
                 const errorMessage = getEmailErrorMessage(email);
                 signupMessage.textContent = errorMessage;
                 signupMessage.classList.add('error');
                 return;
             }
-            
+
             const lastSubmitTime = localStorage.getItem('lastSubmitTime');
             const now = Date.now();
             if (lastSubmitTime && now - lastSubmitTime < 60000) { // 1 minute cooldown
@@ -226,50 +228,50 @@
                 return;
             }
             localStorage.setItem('lastSubmitTime', now);
-            
+
             const submitButton = document.getElementById('signup-button');
             submitButton.disabled = true;
             buttonText.classList.add('hidden');
             buttonSpinner.classList.remove('hidden');
-            
+
             // Send notification email to owen@owen.uno
             emailjs.send('service_81a40w4', 'template_2tvssaq', {
                 user_email: email,
                 to_email: 'owen@owen.uno',
                 message: 'New subscription request'
             })
-            .then(function() {
-                // Send thank you email to the subscriber
-                return emailjs.send('service_81a40w4', 'template_cntgssn', {
-                    user_email: email,
-                    to_email: email
+                .then(function () {
+                    // Send thank you email to the subscriber
+                    return emailjs.send('service_81a40w4', 'template_cntgssn', {
+                        user_email: email,
+                        to_email: email
+                    });
+                })
+                .then(function () {
+                    signupMessage.textContent = 'Thanks for subscribing!';
+                    signupMessage.classList.add('success');
+
+                    document.getElementById('email-input').value = '';
+                })
+                .catch(function (error) {
+                    signupMessage.textContent = 'Something went wrong. Please try again later.';
+                    signupMessage.classList.add('error');
+                    console.error('EmailJS error:', error);
+                })
+                .finally(function () {
+                    submitButton.disabled = false;
+                    buttonText.classList.remove('hidden');
+                    buttonSpinner.classList.add('hidden');
+                    if (signupMessage.classList.contains('success')) {
+                        setTimeout(() => {
+                            signupMessage.textContent = '';
+                            signupMessage.classList.remove('success');
+                        }, 3000);
+                    }
                 });
-            })
-            .then(function() {
-                signupMessage.textContent = 'Thanks for subscribing!';
-                signupMessage.classList.add('success');
-                
-                document.getElementById('email-input').value = '';
-            })
-            .catch(function(error) {
-                signupMessage.textContent = 'Something went wrong. Please try again later.';
-                signupMessage.classList.add('error');
-                console.error('EmailJS error:', error);
-            })
-            .finally(function() {
-                submitButton.disabled = false;
-                buttonText.classList.remove('hidden');
-                buttonSpinner.classList.add('hidden');
-                if (signupMessage.classList.contains('success')) {
-                    setTimeout(() => {
-                        signupMessage.textContent = '';
-                        signupMessage.classList.remove('success');
-                    }, 3000);
-                }
-            });
         });
 
-        document.getElementById('email-input').addEventListener('input', function() {
+        document.getElementById('email-input').addEventListener('input', function () {
             const email = this.value;
             const emailInput = document.getElementById('email-input');
             if (!email) {
@@ -293,25 +295,25 @@
 
         function validateEmail(email) {
             const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
-            
+
             if (regex.test(email)) {
                 const domain = email.substring(email.indexOf('@') + 1);
-                
+
                 if (!domain.includes('.')) {
                     return false;
                 }
-                
+
                 const tld = domain.substring(domain.lastIndexOf('.') + 1);
                 if (tld.length < 2) {
                     return false;
                 }
-                
+
                 return true;
             }
-            
+
             return false;
         }
-        
+
         function getEmailErrorMessage(email) {
             if (!email.includes('@')) {
                 return 'Please include an @ in the email address';
@@ -319,10 +321,10 @@
                 return 'Please enter a username before the @';
             } else if (email.indexOf('@') === email.length - 1) {
                 return 'Please include a domain after the @';
-            } 
-            
+            }
+
             const domain = email.substring(email.indexOf('@') + 1);
-            
+
             if (!domain.includes('.')) {
                 return 'Please include a domain extension (e.g. .com)';
             } else if (domain.lastIndexOf('.') === 0) {
@@ -330,12 +332,12 @@
             } else if (domain.lastIndexOf('.') === domain.length - 1) {
                 return 'Please include a domain extension after the dot';
             }
-            
+
             const tld = domain.substring(domain.lastIndexOf('.') + 1);
             if (tld.length < 2) {
                 return 'Domain extension must be at least 2 characters';
             }
-            
+
             return 'Please enter a valid email address';
         }
 
@@ -349,7 +351,7 @@
                     content.classList.remove('fade-out');
                 }, 300);
             }
-            
+
             if (e.target === contactPopup) {
                 const content = contactPopup.querySelector('.popup-content');
                 content.classList.add('fade-out');

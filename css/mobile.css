@@ -91,9 +91,12 @@ body.mobile-device #menu-bar {
   padding: 0 8px;
   font-size: 12px;
   font-weight: bold;
-  z-index: 1000;
+  z-index: 1001; /* Increase z-index to be above content screens */
   width: 100%;
   box-sizing: border-box;
+  position: fixed; /* Keep it fixed at the top */
+  top: 0;
+  left: 0;
 }
 
 .ios-carrier {
@@ -840,12 +843,12 @@ body.mobile-device #desktop {
 .ios-content-screen {
     display: none;
     position: fixed;
-    top: 0;
+    top: 20px; /* Leave space for status bar */
     left: 0;
     width: 100%;
-    height: 100%;
+    height: calc(100% - 20px); /* Subtract status bar height */
     background-color: var(--ios-background);
-    z-index: 1001;
+    z-index: 100; /* Below status bar */
     flex-direction: column;
 }
 
