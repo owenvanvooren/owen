@@ -305,6 +305,33 @@ body {
     z-index: 1001;
 }
 
+/* Apple menu dropdown needs specific positioning */
+#apple-menu {
+    left: 0;
+}
+
+/* Position dropdown under the appropriate menu item */
+#file-menu {
+    left: 0;
+}
+
+#edit-menu {
+    left: 0;
+}
+
+#view-menu {
+    left: 0;
+}
+
+#special-menu {
+    left: 0;
+}
+
+#help-menu {
+    left: 0;
+}
+
+/* Position dropdown items properly */
 .dropdown-item {
     padding: 3px 15px;
     font-size: 12px;
@@ -333,6 +360,15 @@ body {
     height: 1px;
     background-color: #888;
     margin: 3px 0;
+}
+
+/* Ensure menu items have relative positioning for dropdown alignment */
+.menu-item {
+    position: relative;
+}
+
+.menu-item .dropdown {
+    left: 0; /* Align dropdown with menu item */
 }
 
 /* Desktop Icons */

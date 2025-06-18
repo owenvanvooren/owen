@@ -39,6 +39,11 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize startup screen (will call the appropriate interface init)
     initializeStartupScreen();
+    
+    // Initialize menus directly (to ensure they work even if startup process has issues)
+    if (!isMobile) {
+        initializeMenus();
+    }
 });
 
 // Check if the device is mobile
@@ -810,6 +815,7 @@ function toggleZoom(window) {
 
 // Menu bar functionality
 function initializeMenus() {
+    console.log('Initializing menus'); // Debug log
     const menuItems = document.querySelectorAll('.menu-item');
     const dropdowns = document.querySelectorAll('.dropdown');
     const appleMenu = document.querySelector('.apple-menu');
@@ -823,6 +829,7 @@ function initializeMenus() {
     function showMenu(menuItem) {
         // Get the dropdown for this menu item
         const dropdown = menuItem.querySelector('.dropdown');
+        console.log('Showing menu:', menuItem.textContent, dropdown); // Debug log
         
         // Hide all other dropdowns
         dropdowns.forEach(d => {
@@ -849,7 +856,9 @@ function initializeMenus() {
     // Toggle menus when clicking menu items
     menuItems.forEach(item => {
         item.addEventListener('click', function(e) {
+            e.preventDefault(); // Prevent default behavior
             e.stopPropagation(); // Prevent immediate closing
+            console.log('Menu item clicked:', this.textContent); // Debug log
             
             // If this menu is already open, close it
             if (activeMenu === this && isMenuOpen) {
@@ -879,39 +888,21 @@ function initializeMenus() {
     setupMenuItemActions();
     
     // Close dropdowns when clicking outside
-    document.addEventListener('click', function() {
-        hideAllMenus();
-    });
-    
-    // Apple menu special handling
-    appleMenu.addEventListener('click', function(e) {
-        e.stopPropagation();
-        
-        // Get apple menu dropdown
-        const appleDropdown = document.getElementById('apple-menu');
-        
-        // Hide all other dropdowns
-        dropdowns.forEach(d => {
-            if (d !== appleDropdown) d.style.display = 'none';
-        });
-        
-        // Toggle apple menu
-        if (appleDropdown) {
-            if (appleDropdown.style.display === 'block') {
-                appleDropdown.style.display = 'none';
-                isMenuOpen = false;
-                activeMenu = null;
-            } else {
-                appleDropdown.style.display = 'block';
-                isMenuOpen = true;
-                activeMenu = appleMenu;
-            }
+    document.addEventListener('click', function(e) {
+        // Only hide menus if we're not clicking on a menu item
+        if (!e.target.closest('.menu-item') && !e.target.closest('.apple-menu')) {
+            hideAllMenus();
         }
     });
     
-    // Handle apple menu hover when menus are open
-    appleMenu.addEventListener('mouseover', function(e) {
-        if (isMenuOpen && activeMenu !== this) {
+    // Apple menu special handling
+    if (appleMenu) {
+        appleMenu.addEventListener('click', function(e) {
+            e.preventDefault(); // Prevent default behavior
+            e.stopPropagation();
+            console.log('Apple menu clicked'); // Debug log
+            
+            // Get apple menu dropdown
             const appleDropdown = document.getElementById('apple-menu');
             
             // Hide all other dropdowns
@@ -919,13 +910,38 @@ function initializeMenus() {
                 if (d !== appleDropdown) d.style.display = 'none';
             });
             
-            // Show apple menu
+            // Toggle apple menu
             if (appleDropdown) {
-                appleDropdown.style.display = 'block';
-                activeMenu = appleMenu;
+                if (appleDropdown.style.display === 'block') {
+                    appleDropdown.style.display = 'none';
+                    isMenuOpen = false;
+                    activeMenu = null;
+                } else {
+                    appleDropdown.style.display = 'block';
+                    isMenuOpen = true;
+                    activeMenu = appleMenu;
+                }
             }
-        }
-    });
+        });
+        
+        // Handle apple menu hover when menus are open
+        appleMenu.addEventListener('mouseover', function(e) {
+            if (isMenuOpen && activeMenu !== this) {
+                const appleDropdown = document.getElementById('apple-menu');
+                
+                // Hide all other dropdowns
+                dropdowns.forEach(d => {
+                    if (d !== appleDropdown) d.style.display = 'none';
+                });
+                
+                // Show apple menu
+                if (appleDropdown) {
+                    appleDropdown.style.display = 'block';
+                    activeMenu = appleMenu;
+                }
+            }
+        });
+    }
 }
 
 // Setup menu item actions
