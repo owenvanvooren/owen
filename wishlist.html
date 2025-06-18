@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Image preloading :) -->
+    <link rel="preload" as="image" href="mascot.svg">
+    <link rel="preload" as="image" href="white.svg">
+    <link rel="preload" as="image" href="tinycon.png">
+    <!-- Font preloading :) -->
+    <link rel="preload" as="font" href="/fonts/Fors Light Italic.ttf" crossorigin="anonymous">
+    <link rel="preload" as="font" href="/fonts/MaaxUnicase.otf" crossorigin="anonymous">
+
+    <meta name="description" content="Owen Van Vooren's Birthday Wishlist - UI designer and developer">
+    <meta name="keywords" content="Owen Van Vooren, Birthday Wishlist, Developer, Photographer, Entrepreneur">
+    <meta name="theme-color" content="#2273f3">
+    <meta property="og:title" content="owen's birthday wishlist">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="Check out what Owen wants for his birthday!">
+    <meta property="og:image" content="capture.png">
+    <meta property="og:url" content="https://owen.uno/wishlist">
+    <title>owen's birthday wishlist</title>
+    <link rel="stylesheet" href="/css/instyle.css">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <meta name="apple-mobile-web-app-title" content="owen.uno">
+    <link rel="manifest" href="/site.webmanifest">
+    <style>
+        .wishlist-container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .wishlist-title {
+            font-family: 'Maax Unicase', 'Fors', sans-serif;
+            color: var(--accent-color);
+            font-size: 48px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .wishlist-items {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .wishlist-item {
+            background-color: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(34, 115, 243, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(34, 115, 243, 0.2);
+        }
+
+        .wishlist-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(34, 115, 243, 0.15);
+        }
+
+        .item-name {
+            font-family: 'Maax Unicase', 'Fors', sans-serif;
+            color: var(--accent-color);
+            font-size: 24px;
+            margin: 0 0 10px 0;
+        }
+
+        .item-description {
+            color: var(--text-color);
+            font-family: 'Fors', sans-serif;
+            font-size: 16px;
+            margin: 0;
+            text-transform: lowercase;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--accent-color);
+            color: white;
+            border-radius: 12px;
+            text-decoration: none;
+            font-family: 'Maax Unicase', 'Fors', sans-serif;
+            margin: 40px 0;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-button:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .back-container {
+            text-align: center;
+        }
+
+        @media screen and (max-width: 768px) {
+            .wishlist-title {
+                font-size: 36px;
+            }
+
+            .item-name {
+                font-size: 20px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .wishlist-title {
+                font-size: 28px;
+            }
+
+            .wishlist-item {
+                padding: 15px;
+            }
+        }
+
+        .item-link {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .wishlist-info {
+            text-align: center;
+            margin-bottom: 30px;
+            font-family: 'Fors', sans-serif;
+            color: var(--text-color);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            text-transform: lowercase;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <div class="wishlist-container">
+            <h1 class="wishlist-title">owen's birthday wishlist</h1>
+
+            <p class="wishlist-info">
+                Here are some items I'd love for my birthday! Click on any item for more details.
+            </p>
+
+            <ul class="wishlist-items">
+                <li class="wishlist-item">
+                    <h3 class="item-name">dbrand MacBook Air Skin</h3>
+                    <p class="item-description" style="text-transform: none;">MacBook Air 13.6" M2 2022 Area 51 (Classified, black) skin, preferably
+                        deluxe edition
+                        kit</p>
+                    <a href="https://dbrand.com/shop/skins/apple-macbook-air-13.6-skins-2022-m2" class="item-link"
+                        target="_blank" rel="noopener noreferrer"></a>
+                </li>
+
+                <li class="wishlist-item">
+                    <h3 class="item-name">Keychron K3 Wireless Mechanical Keyboard</h3>
+                    <p class="item-description">a smooth typing experience, loved by devs</p>
+                    <a href="https://www.amazon.com/Keychron-Profile-Wireless-Mechanical-Keyboard/dp/B08LSJ4RHH/ref=sr_1_5?crid=1I5H5EHX39OKW&dib=eyJ2IjoiMSJ9.m4As5048q0Xyp_ct5WdcNV92VwflZzdsvGZkdG2vXJT7JvlmmngRFoI7FNRbXInV9tS76b2oJXzwlsbJIMUcvi8HRhRc-Xz65WlYViUZFQTqbASJ3FqM07bBTQ3w5mMqMKC67S1YODjeo7UJI5nJaJUTq8hdlY8dNW8o7V1nuVy05UzPn3UdcxPlWuYNP8ifOKnSIFD2hXlKT5CpYLRII2esFxTiPWvZW3G-DaDmsWQ.kTVCy0O0WoluDSp__xFYTr5Cf1PC0irBdPQCB0SkX_A&dib_tag=se&keywords=keychron%2Bmechanical%2Bkeyboard&qid=1750271224&sprefix=keychron%2Bmechanical%2Bkeyboar%2Caps%2C195&sr=8-5&th=1"
+                        class="item-link" target="_blank" rel="noopener noreferrer"></a>
+                </li>
+
+                                <li class="wishlist-item">
+                    <h3 class="item-name">Keychron C2 Wired Mechanical Keyboard</h3>
+                    <p class="item-description">an alternate "red switch" key style gives a different vibe</p>
+                    <a href="https://www.amazon.com/Keychron-Mechanical-Keyboard-Compatible-Keycaps/dp/B09JG81YRT/ref=sr_1_3?crid=1I5H5EHX39OKW&dib=eyJ2IjoiMSJ9.V9ItYb0WwyonTbBQq68o4P6ICM1Qu4ezsH6mgd4F0W_cohB5QdsmSEriDUU5YyI-mLClDzj1rSl9uwzy1P-MrfwNsFbmhMGpNq4aNaphKUIBNoOPbZUAyVc0GIcn-CI-XDm6XTAc8ahT3AQpBkXoaPWS9UaSmpB0R13hgIokL68AuUzT8xhQMJwlni-ORWFe3-sYtIxC5SEW6TMrcHl0y3bYX91L4rgF-dJpBNOZKzo.4AoNnzH4qZgYBfmwb_78Z490M0VXvP2x7hui9i8nfac&dib_tag=se&keywords=keychron%2Bmechanical%2Bkeyboard&qid=1750271496&refinements=p_36%3A-5000&rnid=386442011&sprefix=keychron%2Bmechanical%2Bkeyboar%2Caps%2C195&sr=8-3&th=1"
+                        class="item-link" target="_blank" rel="noopener noreferrer"></a>
+                </li>
+
+                <li class="wishlist-item">
+                    <h3 class="item-name">LTC mechanical keyboard</h3>
+                    <p class="item-description" style="text-transform: none;">yAy RgB kEyBoArD</p>
+                    <a href="https://www.amazon.com/LTC-Nimbleback-Wireless-Mechanical-Swappable/dp/B0D9237RVM/ref=sxin_16_sbv_search_btf?content-id=amzn1.sym.8aea4788-5372-43c5-bde7-3d239eb02a51%3Aamzn1.sym.8aea4788-5372-43c5-bde7-3d239eb02a51&crid=1I5H5EHX39OKW&cv_ct_cx=keychron%2Bmechanical%2Bkeyboard&keywords=keychron%2Bmechanical%2Bkeyboard&pd_rd_i=B0D9237RVM&pd_rd_r=dfeb48bc-6519-4b36-836d-9456484a447d&pd_rd_w=psiie&pd_rd_wg=5KXLD&pf_rd_p=8aea4788-5372-43c5-bde7-3d239eb02a51&pf_rd_r=Q57G38XTD26MR20HD83V&qid=1750271335&refinements=p_36%3A-5000&rnid=386442011&sbo=RZvfv%2F%2FHxDF%2BO5021pAnSA%3D%3D&sprefix=keychron%2Bmechanical%2Bkeyboar%2Caps%2C195&sr=1-1-5190daf0-67e3-427c-bea6-c72c1df98776&th=1"
+                        class="item-link" target="_blank" rel="noopener noreferrer"></a>
+                </li>
+
+                <li class="wishlist-item">
+                    <h3 class="item-name">Apple Developer Program</h3>
+                    <p class="item-description">Annual subscription ($99)</p>
+                </li>
+
+                <li class="wishlist-item">
+                    <h3 class="item-name">Old Tech</h3>
+                    <p class="item-description">Vintage iPods, iPhones, or other retro Apple devices</p>
+                </li>
+
+                <li class="wishlist-item">
+                    <h3 class="item-name">DJI Osmo Mobile SE</h3>
+                    <p class="item-description">Smartphone gimbal stabilizer for smooth video</p>
+                    <a href="https://www.amazon.com/DJI-Osmo-Mobile-SE-ActiveTrack/dp/B0B7XCG225?adgrpid=180995051920&hvpone=&hvptwo=&hvadid=748029726670&hvpos=&hvnetw=g&hvrand=13248659731056906681&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=1020086&hvtargid=dsa-1599129282929&hydadcr=&mcid=&hvocijid=13248659731056906681--&hvexpln=67&tag=googhydr-20&hvsb=Cameras_d&hvcampaign=dsadesk"
+                        class="item-link" target="_blank" rel="noopener noreferrer"></a>
+                </li>
+
+                <li class="wishlist-item">
+                    <h3 class="item-name">Micron Pens</h3>
+                    <p class="item-description">Sizes: 0.8, 1.0, 1.2, Graphic 1</p>
+                    <a href="https://www.jetpens.com/Pigma-Micron-Pens/ct/238" class="item-link" target="_blank"
+                        rel="noopener noreferrer"></a>
+                </li>
+
+                <li class="wishlist-item">
+                    <h3 class="item-name">High-quality Notebook</h3>
+                    <p class="item-description">Small, premium notebook like the teenage engineering field notebook</p>
+                    <a href="https://teenage.engineering/store/field-notebook/" class="item-link" target="_blank"
+                        rel="noopener noreferrer"></a>
+                </li>
+
+                <li class="wishlist-item">
+                    <h3 class="item-name">AirPods</h3>
+                    <p class="item-description">Apple AirPods (any model)</p>
+                    <a href="https://www.apple.com/airpods/" class="item-link" target="_blank"
+                        rel="noopener noreferrer"></a>
+                </li>
+
+                <li class="wishlist-item">
+                    <h3 class="item-name">teenage engineering field bottle</h3>
+                    <p class="item-description">Sleek, minimalist water bottle</p>
+                    <a href="https://teenage.engineering/store/field-bottle/" class="item-link" target="_blank"
+                        rel="noopener noreferrer"></a>
+                </li>
+
+                <li class="wishlist-item">
+                    <h3 class="item-name">teenage engineering USB-C Cable</h3>
+                    <p class="item-description">Textile USB-C to USB-C cable</p>
+                    <a href="https://teenage.engineering/store/textile-cable-usb-c/" class="item-link" target="_blank"
+                        rel="noopener noreferrer"></a>
+                </li>
+
+                <li class="wishlist-item">
+                    <h3 class="item-name">Raspberry Pi zero 2 w</h3>
+                    <p class="item-description">raspberry pi zero w: a micro-microcomputer</p>
+                    <a href="https://www.raspberrypi.com/products/raspberry-pi-zero-2-w/" class="item-link"
+                        target="_blank" rel="noopener noreferrer"></a>
+                </li>
+
+                <li class="wishlist-item">
+                    <h3 class="item-name">programmable NFC tags</h3>
+                    <p class="item-description">trigger custom wireless actions</p>
+                    <a href="https://www.amazon.com/NFC-Stickers-Programmable-Rewritable-Adhesive%EF%BC%8CCompatible/dp/B0CPJ5DDCQ/ref=sr_1_8?dib=eyJ2IjoiMSJ9.1UAGNTmYaUM_NTRRdpGSKQcq_2kW6tZQxH2IM7VuoqLrx-P4ZsXl2M0ndPGWjTD852b0m7M7_gnJQb7yztijdz9enDatWw7kUGRZkL81Xu9bXL6nSqhSvTyFDdkMSLAPR4Vzhplj5Z2KbkT3jSRdW_51f1qu1bRrOjg-CDDYn_hPxVcxTs_i0LsHSKbO1TcGfI9hTNB524abH5pZ9VlzeimTFxoI0Hcwqsvby5zoJ6I9Mgpk4OFwQAtYtYBpZTeul0LFV7Ki98VM8VCJH6rN_Z6Jj5zSKINA6iT41TnTRXo.25UaywxCzfW_vQaM94RTxPAmreyqXjoCkPPnqPQ0rQQ&dib_tag=se&keywords=programmable+nfc+tags&qid=1750270061&sr=8-8"
+                        class="item-link" target="_blank" rel="noopener noreferrer"></a>
+                </li>
+
+                <li class="wishlist-item">
+                    <h3 class="item-name">anker usbc to sd card multi-reader</h3>
+                    <p class="item-description">transfer files and data to sd cards</p>
+                    <a href="https://www.amazon.com/Anker-Reader-Memory-RS-MMC-Micro/dp/B07NW8RPYN/ref=sr_1_4?dib=eyJ2IjoiMSJ9.wE3XECCWrw3oGlGQhx_-T9qflo-LtULI8R1-BN3Uinsn9Zxdn1Gq0Beq4VW7_XkqrW1oeff9oRGfl2SoYRcfKZpoM_P0cQs5kW3IAfqYiPTGCS_MqGxNyvvfy3utncdmCqj-D2uWPheNk6hvOCJP2N2AunIKR0idoMZKvyoCNLo7dSaWRSZ_3GvZu-Kl9rUHe0BVknn80AC_DOw_tHQ2de3XrP8mqehl1OES4ihxwo0.GELdX0LZ-A7uWQlECeqOxEXlyWD4nE4tmVBdqTSAGPI&dib_tag=se&keywords=micro+sd+to+usb+c+adapter&qid=1750270192&sr=8-4"
+                        class="item-link" target="_blank" rel="noopener noreferrer"></a>
+                </li>
+
+                <li class="wishlist-item">
+                    <h3 class="item-name">usb-c data blocker charging pack</h3>
+                    <p class="item-description">prevents malicious data transfers when using public energy</p>
+                    <a href="https://www.amazon.com/Offgrid-Blocker-Tablets-Unwanted-Transfer/dp/B0B5BC4DC4/ref=sr_1_10?crid=A5D4X8HXCSMT&dib=eyJ2IjoiMSJ9.ph2CKplS4OSKPSpcnNL_HqF2Mm8Iwqffef63T8CFz5WnpFBzvnL5Dtrn3tAKUjgwqumvuOMZ9aPFA8XrwRbiTNMNj0cBW0Sseq9Hvu8EscyJXV8LG36mDNzMVLlca5wMmNhn9dnwLs0hJxlaNB0uVQSgMPJP9ntufrn8t0qg4Fx-sYBbh940a-zIXwG2iElcnK7LHcBuTAcqWktfPzbfmKTaGxBhMCr8eH86dNIFCPY.juf-znpzHpfXQoqdKjYrGXYzk0v_02SnNmhN3V8UmBo&dib_tag=se&keywords=usb%2Bdata%2Bblocker%2Btype%2Bc&qid=1750270654&sprefix=usb%2Bdata%2Bblocker%2Btype%2Bc%2Caps%2C142&sr=8-10&th=1"
+                        class="item-link" target="_blank" rel="noopener noreferrer"></a>
+                </li>
+
+                <li class="wishlist-item">
+                    <h3 class="item-name">macro pad</h3>
+                    <p class="item-description">customizable keys can perform automatic tasks</p>
+                    <a href="https://www.amazon.com/12-Mechanical-Programmable-Swappable-Keyboard/dp/B09NRQQFHW/ref=sr_1_3?crid=3JW96EY6D232N&dib=eyJ2IjoiMSJ9.vbp8OfnJa4V18C3A0j7nDIGnLHy7tWZe6irZ6JbVpYsNjYFbtP-swG8mbfGDKXLaUnrqg6IiQtNJPVJQS3cNlFq6Um83weYvUPgDfkvIvg-zAP0-V_9BoYpvbPxJw0oDBTEscxjoav43ViDhktr11BYloXoJJBWD71z92lEDfK3Qdad05Lvv-kgyTJ7r6IGFw7J5Bo7ZJFgJFXtivDg1LTkokPGQkQvBj7aiqlXuAmU.27BvFz6A1hkU_Ly6VBiCT5UR4633nZsGs943lj25mq4&dib_tag=se&keywords=macro+pad+for+macos&qid=1750270821&refinements=p_36%3A-3000&rnid=386442011&sprefix=macro+pad+for+macos%2Caps%2C118&sr=8-3"
+                        class="item-link" target="_blank" rel="noopener noreferrer"></a>
+                </li>
+            </ul>
+
+            <div class="back-container">
+                <a href="/" class="back-button">back to home</a>
+            </div>
+        </div>
+    </main>
+
+    <img src="/images/squiggle.svg" id="squiggle" alt="" draggable="false" oncontextmenu="return false">
+
+    <script>
+        // Make each item box clickable
+        document.querySelectorAll('.wishlist-item').forEach(item => {
+            item.addEventListener('click', (e) => {
+                const link = item.querySelector('.item-link');
+                if (link && !e.target.classList.contains('item-link')) {
+                    window.open(link.href, '_blank');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
