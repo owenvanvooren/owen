@@ -998,6 +998,7 @@ main {
     top: 50%;
     transform: translateY(-50%);
     text-align: left;
+    text-transform: lowercase;
 }
 
 #right-links .tooltip h3 {
