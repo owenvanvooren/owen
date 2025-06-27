@@ -1,62 +1,40 @@
 <!DOCTYPE html>
-<html lang="en" draggable="false">
+<html lang="en">
 
 <head>
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Owen Van Vooren - Page Not Found</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-    rel="stylesheet">
-  <meta name="theme-color" content="#F25337">
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Image preloading -->
+    <link rel="preload" as="image" href="mascot.svg">
+    <link rel="preload" as="image" href="white.svg">
+    <link rel="preload" as="image" href="tinycon.png">
+    <!-- Font preloading -->
+    <link rel="preload" as="font" href="/fonts/Fors Light Italic.ttf" crossorigin="anonymous">
+    <link rel="preload" as="font" href="/fonts/MaaxUnicase.otf" crossorigin="anonymous">
+    <meta name="theme-color" content="#F25337">
+    <title>Page Not Found – Owen Van Vooren</title>
+    <link rel="stylesheet" href="/css/instyle.css">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <meta name="apple-mobile-web-app-title" content="owen.uno">
+    <link rel="manifest" href="/site.webmanifest">
 </head>
 
-<body draggable="false">
-  <div id="header-container"></div>
-  <main>
-    <!-- Hey from the HTML! Sorry you couldn't find the page you were looking for :( -->
-    <img src="mascot.svg" alt="My logo : )" draggable="false" width="200" height=auto class="mainimg"
-      oncontextmenu="return false;">
-    <h1 class="main-h1">Oops!</h1>
-    <h2 style="font-size: 16px;">It seems you've lost your way.</h2>
-
-    <p class="aboutMe">The website you tried to visit doesn't exist anymore, has been moved, or, maybe never existed at all!</p>
-    <br>
-    <span>
-      <a href="https://owen.uno"><button><b>Back to home</b></button></a>
-    </span>
-    <br>
-    <div id="randomFact" class="random-fact"></div>
-  </main>
-    <footer>
-        <p>&copy; <a href="https://github.com/teenagetech" class="footer-link">Owen Van Vooren</a>. All rights reserved. Happy Holidays!
-        </p>
+<body>
+    <main style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 90vh;">
+        <h1 class="main-h1" style="font-family: 'Maax Unicase', 'Fors', sans-serif; color: var(--accent-color); font-size: 60px; margin-bottom: 0;">oops!</h1>
+        <h2 style="font-size: 22px; color: var(--secondary-color); font-family: 'Fors', sans-serif; margin-top: 8px;">It seems you've lost your way.</h2>
+        <p class="aboutMe" style="font-size: 20px; color: var(--text-color); max-width: 420px; text-align: center; margin-top: 18px;">The page you tried to visit doesn't exist, has been moved, or maybe never existed at all!</p>
+        <a href="/" style="margin-top: 32px; text-decoration: none;">
+            <button style="background-color: var(--accent-color); color: #fff; border: none; padding: 14px 32px; border-radius: 12px; font-family: 'Maax Unicase', 'Fors', sans-serif; font-size: 18px; cursor: pointer; transition: background-color 0.3s;">Back to home</button>
+        </a>
+        <div id="randomFact" class="random-fact" style="margin-top: 36px; color: var(--secondary-color); font-size: 16px; font-family: 'Fors', sans-serif;"></div>
+    </main>
+    <footer style="text-align: center; margin-bottom: 24px; color: var(--text-color); font-size: 15px; font-family: 'Fors', sans-serif;">
+        <p>&copy; <a href="https://github.com/owenvanvooren" class="footer-link" style="color: var(--accent-color); text-decoration: none;">Owen Van Vooren</a>. All rights reserved.</p>
     </footer>
-  <script src="header.js"></script>
-  <script type="module" src="firebaseconfig.js"></script>
-
-  <script>
-    const facts = [
-      "Fun fact: this site is powered by over 1,250 lines of code!",
-      "Fun fact: Owen.uno is a shorter domain than Apple.com, Google.com, and even GitHub.io!",
-      "Site hint: try hovering your cursor over the blue mascot. Can you pet him?",
-      'Question: is the mascot a duck or a chicken? What do you think? Email me your thoughts at <a href="mailto:hi@owen.uno" class="normal-link">hi@owen.uno</a>!'
-    ];
-
-
-    function displayRandomFact() {
-      const randomIndex = Math.floor(Math.random() * facts.length);
-      const factElement = document.getElementById('randomFact');
-      factElement.innerHTML = facts[randomIndex];
-    }
-
-    displayRandomFact();
-  </script>
-
 </body>
 
 </html>

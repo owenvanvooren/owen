@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link id="favicon" rel="icon" href="DarkModeFavicon.ico">
+    <link id="apple-touch-icon" rel="apple-touch-icon" href="DarkModeFavicon.ico">
+    <meta name="description" content="A fun feline chatbot. Talk to CatChat whenever, wherever.">
+    <meta name="keywords" content="CatChat, chatbot, cat-themed chatbot, Cat.chat, CatChat teenage tech, teenage tech, catchat">
+    <title>CatChat</title>
+    <link rel="stylesheet" href="cat styles.css">
+</head>
+<body>
+    <div id="header-container"></div>
+    <div id="chat-container">
+        <div id="chat-header">
+            <div class="header-left">
+                <img id="chat-logo" src="DarkModeHeader.png" alt="CatChat Logo" class="ch-logo" width="40px">
+                <h1 class="header-text">CatChat</h1>
+            </div>
+            <div class="header-right">
+                <button id="toggle-mode"><b>Switch Colors</b></button>
+                <button id="reset"><b>Clear Chat</b></button>
+            </div>
+        </div>
+        <div id="chat-window">
+            <div id="chat-messages"></div>
+            <noscript><p class="cat-message">Hey! You'll need to enable JavaScript to use CatChat.</p></noscript>
+        </div>
+        <div id="chat-input">
+            <input type="text" id="user-input" placeholder="CatChat…" autocomplete="on" spellcheck="true" contenteditable="true">
+            <button id="send-button" disabled><b>Send</b></button>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; Teenage Tech. All rights reserved.</p>
+    </footer>
+    <script src="catscript.js"></script>
+    <script src="header.js"></script>
+    <script type="module" src="firebaseconfig.js"></script>
+</body>
+</html>
